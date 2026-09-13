@@ -6,291 +6,69 @@
     <title>ร้านเสื้อผ้าของฉัน - Fashion Shop</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Kanit', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kanit', sans-serif; }
+        body { background-color: #fcf8f5; color: #333; }
+        
+        nav { background-color: #2b1b17; color: white; display: flex; justify-content: space-between; align-items: center; padding: 12px 80px; }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background-color: #f7d6c8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+        .logo-text h1 { font-size: 18px; font-weight: 600; }
+        .logo-text span { font-size: 12px; color: #ccc; }
+        .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-size: 15px; }
+        .nav-links a.active { color: #e66822; border-bottom: 2px solid #e66822; padding-bottom: 4px; }
+        
+        /* ปุ่มสำหรับดาวน์โหลด PDF บน Navbar */
+        .btn-pdf { background-color: #d90429; color: white !important; padding: 6px 16px; border-radius: 20px; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+        
+        .hero { background: linear-gradient(to right, #f7ebe1 50%, #eae0d5 50%); display: flex; align-items: center; justify-content: space-between; padding: 40px 100px; min-height: 320px; }
+        .hero-text h2 { font-size: 38px; color: #2b1b17; line-height: 1.2; margin-bottom: 10px; }
+        .hero-text p { color: #666; margin-bottom: 20px; font-size: 16px; }
+        .btn-primary { background-color: #e66822; color: white; border: none; padding: 10px 30px; border-radius: 20px; font-size: 16px; cursor: pointer; text-decoration: none; display: inline-block; }
+        .hero-img img { max-width: 420px; border-radius: 12px; height: 260px; object-fit: cover; }
+        
+        .container { max-width: 1200px; margin: 30px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 20px; }
+        .section-box { background-color: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .section-box.highlight { background-color: #fdeeeedb; }
+        .section-header { text-align: center; margin-bottom: 20px; }
+        .section-header h3 { font-size: 20px; color: #2b1b17; }
+        .section-header p { font-size: 13px; color: #888; }
+        
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #eee; text-align: center; padding-bottom: 12px; }
+        .product-card img { width: 100%; height: 160px; object-fit: cover; }
+        .product-card h4 { font-size: 15px; margin-top: 8px; }
+        .product-card .desc { font-size: 12px; color: #777; margin: 4px 0; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; padding: 0 12px; margin-top: 8px; }
+        .price { font-weight: 600; color: #2b1b17; }
+        .btn-sm { background-color: #e66822; color: white; border: none; padding: 4px 12px; border-radius: 12px; font-size: 12px; cursor: pointer; text-decoration: none; }
+        
+        .promo-banner { max-width: 1160px; margin: 20px auto; background: linear-gradient(to right, #ffccd5, #ffb3c1); border-radius: 16px; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .promo-text h3 { color: #d90429; font-size: 28px; }
+        .promo-text p { font-size: 20px; font-weight: 600; color: #2b1b17; }
+        .badge-discount { background-color: #d90429; color: white; border-radius: 50%; width: 80px; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; }
+        .badge-discount span { font-size: 20px; line-height: 1; }
+        
+        /* สไตล์สำหรับส่วนเปิดดู PDF แบบ Viewer */
+        .pdf-section { max-width: 1160px; margin: 30px auto; background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+        .pdf-section h3 { margin-bottom: 15px; color: #2b1b17; }
+        .pdf-embed { width: 100%; height: 500px; border: 1px solid #ddd; border-radius: 8px; }
 
-        body {
-            background-color: #fcf8f5;
-            color: #333;
-        }
-
-        /* Navbar */
-        nav {
-            background-color: #2b1b17;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 80px;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            background-color: #f7d6c8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        .logo-text h1 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .logo-text span {
-            font-size: 12px;
-            color: #ccc;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .nav-links a.active {
-            color: #e66822;
-            border-bottom: 2px solid #e66822;
-            padding-bottom: 4px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(to right, #f7ebe1 50%, #eae0d5 50%);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 40px 100px;
-            min-height: 320px;
-        }
-
-        .hero-text h2 {
-            font-size: 38px;
-            color: #2b1b17;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-
-        .hero-text p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        .btn-primary {
-            background-color: #e66822;
-            color: white;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .hero-img img {
-            max-width: 420px;
-            border-radius: 12px;
-        }
-
-        /* Main Content Grid */
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 0 20px;
-        }
-
-        .section-box {
-            background-color: white;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .section-box.highlight {
-            background-color: #fdeeeedb;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .section-header h3 {
-            font-size: 20px;
-            color: #2b1b17;
-        }
-
-        .section-header p {
-            font-size: 13px;
-            color: #888;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            text-align: center;
-            padding-bottom: 12px;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-
-        .product-card h4 {
-            font-size: 15px;
-            margin-top: 8px;
-        }
-
-        .product-card .desc {
-            font-size: 12px;
-            color: #777;
-            margin: 4px 0;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 12px;
-            margin-top: 8px;
-        }
-
-        .price {
-            font-weight: 600;
-            color: #2b1b17;
-        }
-
-        .btn-sm {
-            background-color: #e66822;
-            color: white;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        /* Banner */
-        .promo-banner {
-            max-width: 1160px;
-            margin: 20px auto;
-            background: linear-gradient(to right, #ffccd5, #ffb3c1);
-            border-radius: 16px;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .promo-text h3 {
-            color: #d90429;
-            font-size: 28px;
-        }
-
-        .promo-text p {
-            font-size: 20px;
-            font-weight: 600;
-            color: #2b1b17;
-        }
-
-        .badge-discount {
-            background-color: #d90429;
-            color: white;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 12px;
-        }
-
-        .badge-discount span {
-            font-size: 20px;
-            line-height: 1;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #2b1b17;
-            color: white;
-            padding: 30px 100px 15px 100px;
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .footer-info form {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        .footer-info input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #777;
-            color: white;
-            outline: none;
-        }
-
-        .copyright {
-            text-align: center;
-            font-size: 12px;
-            color: #aaa;
-            border-top: 1px solid #444;
-            padding-top: 15px;
-        }
+        footer { background-color: #2b1b17; color: white; padding: 30px 100px 15px 100px; margin-top: 40px; }
+        .footer-content { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .footer-info form { display: grid; grid-template-columns: 80px 1fr; gap: 8px; font-size: 14px; }
+        .footer-info input { background: transparent; border: none; border-bottom: 1px solid #777; color: white; outline: none; }
+        .copyright { text-align: center; font-size: 12px; color: #aaa; border-top: 1px solid #444; padding-top: 15px; }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Header / Navbar -->
     <nav>
         <div class="logo-area">
             <div class="logo-icon">👕</div>
             <div class="logo-text">
-                <h1>ร้านเสื้อผ้าของAnanchai</h1>
+                <h1>ร้านเสื้อผ้าของฉัน</h1>
                 <span>My Fashion Shop</span>
             </div>
         </div>
@@ -298,6 +76,10 @@
             <li><a href="#" class="active">สินค้าแนะนำ</a></li>
             <li><a href="#">สินค้าทั้งหมด</a></li>
             <li><a href="#">โปรโมชั่น</a></li>
+            
+            <!-- 📌 [จุดปักหมุดที่ 1: ปุ่มดาวน์โหลดไฟล์ PDF ใน GitHub] -->
+            <!-- เปลี่ยน 'catalog.pdf' ให้ตรงกับชื่อไฟล์ PDF ที่อัปโหลดขึ้น GitHub -->
+            <li><a href="catalog.pdf" target="_blank" class="btn-pdf">📄 ดาวน์โหลด PDF</a></li>
         </ul>
     </nav>
 
@@ -306,73 +88,89 @@
         <div class="hero-text">
             <h2>ดูดีทุกสไตล์<br>กับเสื้อผ้าของเรา</h2>
             <p>เสื้อผ้าคุณภาพ ราคานักเรียน</p>
-            <button class="btn-primary">ดูสินค้า</button>
+            <a href="#pdf-view" class="btn-primary">ดูแคตตาล็อก PDF</a>
         </div>
         <div class="hero-img">
-            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600" alt="Fashion collection">
+            <!-- 📌 [จุดปักหมุดที่ 2: เปลี่ยนรูปภาพแบนเนอร์หลัก] -->
+            <!-- ใส่ชื่อไฟล์รูป เช่น "images/hero-banner.jpg" หรือ URL รูปภาพ -->
+            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600" alt="Banner เสื้อผ้า">
         </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- Container สินค้า -->
     <div class="container">
-        <!-- Section 1 -->
+        <!-- กล่องสินค้าแนะนำ -->
         <div class="section-box">
             <div class="section-header">
                 <h3>สินค้าแนะนำ</h3>
                 <p>สินค้ายอดนิยมของร้าน</p>
             </div>
             <div class="product-grid">
+                
+                <!-- สินค้าชิ้นที่ 1 -->
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" alt="เสื้อยืดมินิมอล">
+                    <!-- 📌 [จุดปักหมุดที่ 3: เปลี่ยนรูปสินค้าที่ 1] -->
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" alt="เสื้อยืด">
                     <h4>เสื้อยืดมินิมอล</h4>
                     <p class="desc">ผ้านุ่ม ใส่สบาย ระบายอากาศดี</p>
                     <div class="product-footer">
                         <span class="price">฿190</span>
-                        <button class="btn-sm">ดูรายละเอียด</button>
+                        <button class="btn-sm">สั่งซื้อ</button>
                     </div>
                 </div>
+
+                <!-- สินค้าชิ้นที่ 2 -->
                 <div class="product-card">
+                    <!-- 📌 [จุดปักหมุดที่ 4: เปลี่ยนรูปสินค้าที่ 2] -->
                     <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=300" alt="เดรสเกาหลี">
                     <h4>เดรสเกาหลีหวานๆ</h4>
                     <p class="desc">ทรงสวย ทรงเป๊ะ หวานละมุน</p>
                     <div class="product-footer">
                         <span class="price">฿350</span>
-                        <button class="btn-sm">ดูรายละเอียด</button>
+                        <button class="btn-sm">สั่งซื้อ</button>
                     </div>
                 </div>
+
             </div>
         </div>
 
-        <!-- Section 2 -->
+        <!-- กล่องสินค้าเพิ่มเติม -->
         <div class="section-box highlight">
             <div class="section-header">
                 <h3>สินค้าเพิ่มเติม</h3>
                 <p>อีก 2 สไตล์ที่น่าสนใจ</p>
             </div>
             <div class="product-grid">
+
+                <!-- สินค้าชิ้นที่ 3 -->
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300" alt="แจ็คเก็ตยีนส์">
+                    <!-- 📌 [จุดปักหมุดที่ 5: เปลี่ยนรูปสินค้าที่ 3] -->
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300" alt="แจ็คเก็ต">
                     <h4>แจ็คเก็ตยีนส์เท่ๆ</h4>
                     <p class="desc">ยีนส์เนื้อดี เท่ได้ทุกวัน</p>
                     <div class="product-footer">
                         <span class="price">฿450</span>
-                        <button class="btn-sm">ดูรายละเอียด</button>
+                        <button class="btn-sm">สั่งซื้อ</button>
                     </div>
                 </div>
+
+                <!-- สินค้าชิ้นที่ 4 -->
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300" alt="กางเกงสแล็ค">
+                    <!-- 📌 [จุดปักหมุดที่ 6: เปลี่ยนรูปสินค้าที่ 4] -->
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300" alt="กางเกงขายาว">
                     <h4>กางเกงขายาวสตรีท</h4>
                     <p class="desc">นุ่ม ใส่สบาย เข้ารูปกำลังดี</p>
                     <div class="product-footer">
                         <span class="price">฿290</span>
-                        <button class="btn-sm">ดูรายละเอียด</button>
+                        <button class="btn-sm">สั่งซื้อ</button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Promo Banner -->
+    <!-- โปรโมชั่น -->
     <div class="promo-banner">
         <div class="promo-text">
             <h3>โปรโมชั่นพิเศษ!</h3>
@@ -383,6 +181,13 @@
             ลดทันที
             <span>50฿</span>
         </div>
+    </div>
+
+    <!-- 📌 [จุดปักหมุดที่ 7: ส่วนสำหรับแสดงตัวอย่าง PDF บนหน้าเว็บ (PDF Viewer)] -->
+    <div class="pdf-section" id="pdf-view">
+        <h3>📄 แคตตาล็อกสินค้าประจำเดือน (PDF)</h3>
+        <!-- เปลี่ยน 'catalog.pdf' ใน src ให้ตรงกับชื่อไฟล์ PDF ที่อัปโหลดในโฟลเดอร์ GitHub -->
+        <iframe class="pdf-embed" src="catalog.pdf" type="application/pdf"></iframe>
     </div>
 
     <!-- Footer -->
